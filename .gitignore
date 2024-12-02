@@ -12,3 +12,4 @@ log/
 venv/
 
 mqp-data/flights-benchmark/gen_hdf/flights.hdf
+mqp-data/flights-benchmark/gen_hdf/flights.hdf
