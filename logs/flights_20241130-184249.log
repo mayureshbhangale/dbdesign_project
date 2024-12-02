@@ -1,2 +1,0 @@
-2024-11-30 18:42:49,821 [DEBUG]  Including SPN with table_set {'flights'} with sampling ratio(1000000 / 5819080.0)
-2024-11-30 18:42:49,823 [INFO ]  Evaluating AQP query 0: SELECT AVG(departure_delay) FROM flights WHERE origin='ATL';

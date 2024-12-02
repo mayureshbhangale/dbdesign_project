@@ -1,3 +1,0 @@
-2024-11-30 12:29:25,861 [INFO ]  maqp(evaluate_cardinalities: database_name=None, target_path=./results/flights/cardinality_estimation_results.csv)
-2024-11-30 12:29:25,870 [DEBUG]  Including SPN with table_set {'flights'} with sampling ratio(1000000 / 5819080.0)
-2024-11-30 12:29:25,871 [DEBUG]  Predicting cardinality for query 0: SELECT COUNT(*) FROM flights WHERE DISTANCE > 1000;
