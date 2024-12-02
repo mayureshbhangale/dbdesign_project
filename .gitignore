@@ -11,3 +11,4 @@ log/
 # Ignore the virtual environment folder
 venv/
 
+mqp-data/flights-benchmark/gen_hdf/flights.hdf
