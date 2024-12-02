@@ -1,0 +1,3 @@
+2024-11-30 14:36:13,250 [INFO ]  Generating sampled HDF files in ./mqp-data/flights-benchmark/gen_hdf
+2024-11-30 14:36:13,250 [INFO ]  Schema tables: ['flights']
+2024-11-30 14:36:13,264 [DEBUG]  Creating sample for None

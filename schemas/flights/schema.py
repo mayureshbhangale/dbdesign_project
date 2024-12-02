@@ -1,51 +1,30 @@
 from ensemble_compilation.graph_representation import SchemaGraph, Table
 
-
 def gen_flights_1B_schema(csv_path):
-    schema = gen_flights_10M_schema(csv_path)
-
-    schema.table_dictionary['flights'].sample_rate = 0.01
-    schema.table_dictionary['flights'].table_size = 1000000000
-
-    return schema
-
-
-def gen_mini_flights_schema(csv_path):
-    schema = gen_flights_10M_schema(csv_path)
-
-    schema.table_dictionary['flights'].sample_rate = 0.0001
-    schema.table_dictionary['flights'].table_size = 10000000
-
-    return schema
-
-
-def gen_flights_10M_schema(csv_path):
-    """
-    Flights schema with 1M tuples
-    """
-
     schema = SchemaGraph()
-    # YEAR_DATE,UNIQUE_CARRIER,ORIGIN,ORIGIN_STATE_ABR,DEST,DEST_STATE_ABR,DEP_DELAY,TAXI_OUT,TAXI_IN,ARR_DELAY,AIR_TIME,DISTANCE
 
-    # tables
-    # lineorder
-    schema.add_table(Table('flights',
-                           attributes=['year_date', 'unique_carrier', 'origin', 'origin_state_abr', 'dest',
-                                       'dest_state_abr', 'dep_delay', 'taxi_out', 'taxi_in', 'arr_delay', 'air_time',
-                                       'distance'],
-                           csv_file_location=csv_path.format('dataset_sampled'),
-                           table_size=10000000, primary_key=['f_flightno'], sample_rate=0.1,
-                           fd_list=[('origin', 'origin_state_abr'), ('dest', 'dest_state_abr')]
-                           ))
+    attributes = [
+        'YEAR', 'MONTH', 'DAY', 'DAY_OF_WEEK', 'AIRLINE', 'FLIGHT_NUMBER',
+        'TAIL_NUMBER', 'ORIGIN_AIRPORT', 'DESTINATION_AIRPORT',
+        'SCHEDULED_DEPARTURE', 'DEPARTURE_TIME', 'DEPARTURE_DELAY', 'TAXI_OUT',
+        'WHEELS_OFF', 'SCHEDULED_TIME', 'ELAPSED_TIME', 'AIR_TIME', 'DISTANCE',
+        'WHEELS_ON', 'TAXI_IN', 'SCHEDULED_ARRIVAL', 'ARRIVAL_TIME',
+        'ARRIVAL_DELAY', 'DIVERTED', 'CANCELLED', 'CANCELLATION_REASON',
+        'AIR_SYSTEM_DELAY', 'SECURITY_DELAY', 'AIRLINE_DELAY',
+        'LATE_AIRCRAFT_DELAY', 'WEATHER_DELAY'
+    ]
 
-    return schema
+    primary_key = ['YEAR', 'MONTH', 'DAY', 'FLIGHT_NUMBER', 'TAIL_NUMBER']
 
+    flights = Table(
+        table_name='flights',
+        attributes=attributes,
+        csv_file_location=f'{csv_path}',
+        table_size=5819080,  # Adjust if needed
+        primary_key=primary_key,
+        sample_rate=1.0
+    )
 
-def gen_flights_5M_schema(csv_path):
-    schema = gen_flights_10M_schema(csv_path)
-
-    schema.table_dictionary['flights'].sample_rate = 1
-    schema.table_dictionary['flights'].table_size = 5000000
-    schema.table_dictionary['flights'].csv_file_location = csv_path.format('orig_sample')
+    schema.add_table(flights)
 
     return schema

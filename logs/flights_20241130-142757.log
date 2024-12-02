@@ -1,0 +1,41 @@
+2024-11-30 14:27:57,423 [INFO ]  Generating HDF files in ./mqp-data/flights-benchmark/gen_hdf
+2024-11-30 14:27:57,423 [INFO ]  Preparing hdf file for table flights
+2024-11-30 14:28:07,567 [INFO ]  Managing functional dependencies for table flights
+2024-11-30 14:28:08,347 [INFO ]  Preparing multipliers for table flights
+2024-11-30 14:28:08,347 [INFO ]  Preparing categorical values and null values for table flights
+2024-11-30 14:28:08,348 [DEBUG]  		Preparing categorical values for column YEAR
+2024-11-30 14:28:11,090 [DEBUG]  		Preparing categorical values for column MONTH
+2024-11-30 14:28:13,237 [DEBUG]  		Preparing categorical values for column DAY
+2024-11-30 14:28:15,362 [DEBUG]  		Preparing categorical values for column DAY_OF_WEEK
+2024-11-30 14:28:17,539 [DEBUG]  		Preparing categorical values for column AIRLINE
+2024-11-30 14:28:19,545 [DEBUG]  		Preparing categorical values for column FLIGHT_NUMBER
+2024-11-30 14:28:19,611 [INFO ]  Ignoring column FLIGHT_NUMBER for table flights because there are too many categorical values
+2024-11-30 14:28:19,611 [DEBUG]  		Preparing categorical values for column TAIL_NUMBER
+2024-11-30 14:28:21,761 [DEBUG]  		Preparing categorical values for column ORIGIN_AIRPORT
+2024-11-30 14:28:23,837 [DEBUG]  		Preparing categorical values for column DESTINATION_AIRPORT
+2024-11-30 14:28:25,814 [DEBUG]  		Preparing categorical values for column SCHEDULED_DEPARTURE
+2024-11-30 14:28:27,527 [DEBUG]  		Preparing categorical values for column DEPARTURE_TIME
+2024-11-30 14:28:28,776 [DEBUG]  		Preparing categorical values for column DEPARTURE_DELAY
+2024-11-30 14:28:30,332 [DEBUG]  		Preparing categorical values for column TAXI_OUT
+2024-11-30 14:28:31,495 [DEBUG]  		Preparing categorical values for column WHEELS_OFF
+2024-11-30 14:28:32,610 [DEBUG]  		Preparing categorical values for column SCHEDULED_TIME
+2024-11-30 14:28:33,662 [DEBUG]  		Preparing categorical values for column ELAPSED_TIME
+2024-11-30 14:28:34,728 [DEBUG]  		Preparing categorical values for column AIR_TIME
+2024-11-30 14:28:35,759 [DEBUG]  		Preparing categorical values for column DISTANCE
+2024-11-30 14:28:36,923 [DEBUG]  		Preparing categorical values for column WHEELS_ON
+2024-11-30 14:28:37,899 [DEBUG]  		Preparing categorical values for column TAXI_IN
+2024-11-30 14:28:38,843 [DEBUG]  		Preparing categorical values for column SCHEDULED_ARRIVAL
+2024-11-30 14:28:40,313 [DEBUG]  		Preparing categorical values for column ARRIVAL_TIME
+2024-11-30 14:28:41,242 [DEBUG]  		Preparing categorical values for column ARRIVAL_DELAY
+2024-11-30 14:28:42,142 [DEBUG]  		Preparing categorical values for column DIVERTED
+2024-11-30 14:28:43,076 [DEBUG]  		Preparing categorical values for column CANCELLED
+2024-11-30 14:28:43,975 [DEBUG]  		Preparing categorical values for column CANCELLATION_REASON
+2024-11-30 14:28:44,809 [DEBUG]  		Preparing categorical values for column AIR_SYSTEM_DELAY
+2024-11-30 14:28:45,474 [DEBUG]  		Preparing categorical values for column SECURITY_DELAY
+2024-11-30 14:28:46,106 [DEBUG]  		Preparing categorical values for column AIRLINE_DELAY
+2024-11-30 14:28:46,728 [DEBUG]  		Preparing categorical values for column LATE_AIRCRAFT_DELAY
+2024-11-30 14:28:47,312 [DEBUG]  		Preparing categorical values for column WEATHER_DELAY
+2024-11-30 14:28:47,856 [INFO ]  Relevant attributes for table flights are ['YEAR', 'MONTH', 'DAY', 'DAY_OF_WEEK', 'AIRLINE', 'TAIL_NUMBER', 'ORIGIN_AIRPORT', 'DESTINATION_AIRPORT', 'SCHEDULED_DEPARTURE', 'DEPARTURE_TIME', 'DEPARTURE_DELAY', 'TAXI_OUT', 'WHEELS_OFF', 'SCHEDULED_TIME', 'ELAPSED_TIME', 'AIR_TIME', 'DISTANCE', 'WHEELS_ON', 'TAXI_IN', 'SCHEDULED_ARRIVAL', 'ARRIVAL_TIME', 'ARRIVAL_DELAY', 'DIVERTED', 'CANCELLED', 'CANCELLATION_REASON', 'AIR_SYSTEM_DELAY', 'SECURITY_DELAY', 'AIRLINE_DELAY', 'LATE_AIRCRAFT_DELAY', 'WEATHER_DELAY']
+2024-11-30 14:28:47,856 [INFO ]  NULL values for table flights are [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+2024-11-30 14:28:51,865 [INFO ]  Adding table parts without join partners for table flights
+2024-11-30 14:28:51,917 [INFO ]  HDF files generated at ./mqp-data/flights-benchmark/gen_hdf

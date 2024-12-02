@@ -580,12 +580,11 @@ class SPNEnsemble:
     - For FK relationship referenced entity exists, e.g. every order has a customer. (Not sure about this one)
     """
 
-    def __init__(self, schema_graph, spns=None):
+    def __init__(self, schema_graph, spns=None, pairwise_rdc_path=None):
         self.schema_graph = schema_graph
-        self.spns = spns
+        self.spns = spns if spns is not None else []
         self.cached_expecation_vals = dict()
-        if self.spns is None:
-            self.spns = []
+        self.pairwise_rdc_path = pairwise_rdc_path  # Added attribute
 
     def use_generated_code(self):
         for spn in self.spns:
@@ -879,8 +878,7 @@ class SPNEnsemble:
 
                     else:
                         _, aggregation_result = expectation_spn.evaluate_expectation_batch(expectation,
-                                                                                           technical_group_by_scopes,
-                                                                                           result_tuples)
+                                                                                           technical_group_by_scopes)
                     exp_end_t = perf_counter()
                     if debug:
                         logger.debug(f"\t\tcomputed expectation in {exp_end_t - exp_start_t} secs.")
@@ -1119,8 +1117,7 @@ class SPNEnsemble:
                         normalizing_multipliers = spn_for_exp_computation.compute_multipliers(original_query)
                         conditions = spn_for_exp_computation.relevant_conditions(original_query)
 
-                        expectation = Expectation([feature], normalizing_multipliers, conditions,
-                                                  spn=spn_for_exp_computation)
+                        expectation = Expectation(features, normalizing_multipliers, conditions, spn=spn_for_exp_computation)
                         extra_multplier_dict[spn_for_exp_computation] = expectation
                         factors.append(expectation)
 
@@ -1200,7 +1197,9 @@ class SPNEnsemble:
             query.relationship_set -= set(next_mergeable_relationships)
 
         values, cardinality, formula = evaluate_factors(dry_run, factors, self.cached_expecation_vals,
-                                                        gen_code_stats=gen_code_stats)
+                                                        gen_code_stats=gen_code_stats,
+                                                        confidence_intervals=False,
+                                                        confidence_interval_samples=None)
 
         if not return_factor_values:
             return formula, factors, cardinality
@@ -1243,9 +1242,11 @@ class SPNEnsemble:
 
                 else:
                     # find overlapping relationships (relationships already merged that also appear in next_spn)
-                    _, overlapping_tables, no_overlapping_conditions = self._compute_overlap(
-                        next_neighbour, query, original_query, mergeable_relationships, mergeable_tables, spn)
-
+                    overlapping_relationships, overlapping_tables, no_overlapping_conditions = self._compute_overlap(
+                        next_neighbour, query, original_query,
+                        mergeable_relationships,
+                        mergeable_tables,
+                        spn)
                     unnecessary_tables = len(spn.table_set.difference(mergeable_tables).difference(overlapping_tables))
                     current_candidate_vector = (len(where_condition_tables), no_mergeable_relationships,
                                                 no_overlapping_conditions, -unnecessary_tables)
